@@ -2,6 +2,7 @@ package com.example.tind3r;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +30,7 @@ public class SwipeActivity extends AppCompatActivity {
 
     public static ArrayList<Doctor> doctors;
     private ImageView picture;
-    private Button callButton;
+    private Button callButton, viewButton, nextButton;
     private TextView bio, name;
     private int MY_PERMISSIONS_REQUEST_CALL_PHONE;
     int count = -1;
@@ -40,10 +42,10 @@ public class SwipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_swipe);
 
         picture = findViewById(R.id.drPhoto);
-        callButton = findViewById(R.id.callButton);
         bio = findViewById(R.id.drBio);
         name = findViewById(R.id.drName);
 
+        callButton = findViewById(R.id.callButton);
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +55,28 @@ public class SwipeActivity extends AppCompatActivity {
                     Intent phoneCall = new Intent(Intent.ACTION_CALL);
                     phoneCall.setData(Uri.parse("tel:" + d.get_phone()));
                     startActivity(phoneCall);
+                }
+            }
+        });
+
+        nextButton = findViewById(R.id.buttonNext);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadNextDr();
+            }
+        });
+
+        viewButton = findViewById(R.id.buttonView);
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(d.get_contact_url()));
+                    startActivity(myIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "Sorry! Malformed link.",  Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
             }
         });
@@ -81,5 +105,7 @@ public class SwipeActivity extends AppCompatActivity {
         bio.setText(d.get_bio());
         Picasso.get().load(d.get_image_url()).into(picture);
     }
+
+
 
 }
