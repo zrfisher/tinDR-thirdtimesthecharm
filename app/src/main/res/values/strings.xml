@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">tinD3R</string>
     <string-array name="insurances">
+        <item></item>
         <item>1199seiu</item>
         <item>aci-specialty-benefits</item>
         <item>aps-healthcare</item>

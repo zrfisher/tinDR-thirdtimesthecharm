@@ -26,7 +26,6 @@ public class ConcernsActivity extends AppCompatActivity {
         zip = getIntent().getStringExtra("zip");
 
         tv = findViewById(R.id.textViewConcerns);
-        tv.setText(gender+insurance+zip);
 
         anger = findViewById(R.id.checkBoxAnger);
         anxiety = findViewById(R.id.checkBoxAnxiety);
