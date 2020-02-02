@@ -2,12 +2,14 @@ package com.example.tind3r;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class SwipeActivity extends AppCompatActivity {
 
     public static ArrayList<Doctor> doctors;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
