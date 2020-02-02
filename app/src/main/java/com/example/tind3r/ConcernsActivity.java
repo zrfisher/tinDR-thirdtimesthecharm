@@ -70,8 +70,9 @@ public class ConcernsActivity extends AppCompatActivity {
                     url += "&spec=1";
                 }
 
-                tv.setText(url);
-
+                //tv.setText(url);
+                FetchData fd = new FetchData(url, ConcernsActivity.this);
+                fd.execute();
             }
         });
 

@@ -20,10 +20,12 @@ import java.util.List;
 public class FetchData extends AsyncTask<Void, Void, Void> {
 
     String url;
-    private ArrayList<Doctor> drs;
+    private ArrayList<Doctor> drs = new ArrayList<Doctor>();
+    private Activity activity;
 
-    public FetchData(String s){
+    public FetchData(String s, Activity a){
         url = s;
+        activity = a;
     }
 
     @Override
@@ -31,9 +33,10 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     {
         // get html from search results page
         // parse to get list of profile links
+        drs = new ArrayList<Doctor>();
         Document resultsDoc;
         String profile_link;
-        ArrayList<String> profileLinks = new ArrayList<String>;
+        ArrayList<String> profileLinks = new ArrayList<String>();
 
         try {
             resultsDoc = Jsoup.connect(url).get();
@@ -44,7 +47,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
 
         if (resultsDoc != null) {
             // <div class="result-row normal-result row"
-            Elements profiles = resultsDoc.select("result-row.normal-result.row");
+            Elements profiles = resultsDoc.select(".result-row.normal-result.row");
             for (Element profile : profiles) {
                 profile_link = profile.attr("data-profile-url");
                 profileLinks.add(profile_link);
@@ -92,12 +95,15 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
             }
         }
 
+        SwipeActivity.doctors = drs;
         return null;
     }
 
     @Override
     protected void onPostExecute(Void aVoid){
-        SwipeActivity.doctors = drs;
+        //SwipeActivity.doctors = drs;
+        activity.startActivity(new Intent(activity, SwipeActivity.class));
+
     }
 
 }
