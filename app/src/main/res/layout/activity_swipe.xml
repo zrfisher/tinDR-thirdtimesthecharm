@@ -42,14 +42,36 @@
 
     <ScrollView
         android:layout_width="395dp"
-        android:layout_height="415dp"
+        android:layout_height="225dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/callButton"
         app:layout_constraintTop_toBottomOf="@+id/drName"
         tools:layout_editor_absoluteX="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/drBio"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="zskjdflaksjdf;laksdjf;laskdjfal;skdhjgfaurhgkjasdnfhlasdjhf;oaufbjaksdhjflashfgksdjfblaksjdhf;asehfglkshjfndk;bdjflaiwuebfkjsdbvckjsdhkfj"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drPhoto" />
+
     </ScrollView>
+
+    <Button
+        android:id="@+id/callButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="CALL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
