@@ -76,6 +76,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
 
                 String phone = profileContainer.attr("data-phone");
 
+
                 // bio is in a meta tag so extract this separately
                 String bio = "";
                 Elements metaTags = doc.getElementsByTag("meta");
